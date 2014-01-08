@@ -11,6 +11,8 @@ when "master"
   {github: "rails/rails"}
 when "default"
   "~> 4.0.0"
+when "pre"
+  '~> 4.1.0.beta1'
 else
   "~> #{rails_version}"
 end
