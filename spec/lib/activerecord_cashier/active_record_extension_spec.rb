@@ -9,82 +9,82 @@ describe 'AR integration' do
 
   describe "on create" do
     it "expires if tagged as class" do
-      Rails.cache.write('lorem', 'ip', tag: Page)
-      Rails.cache.read('lorem').should == 'ip'
+      subject.write('lorem', 'ip', tag: Page)
+      subject.read('lorem').should == 'ip'
 
       Page.create!
 
-      Rails.cache.read('lorem').should be_nil
+      subject.read('lorem').should be_nil
     end
 
     it "does not expire if created" do
-      Rails.cache.write('lorem', 'ipsum', tag: page)
-      Rails.cache.read('lorem').should == 'ipsum'
+      subject.write('lorem', 'ipsum', tag: page)
+      subject.read('lorem').should == 'ipsum'
 
       Page.create! name: 'third'
 
-      Rails.cache.read('lorem').should == 'ipsum'
+      subject.read('lorem').should == 'ipsum'
     end
   end
 
   describe "on update" do
     it "expires if tagged as class" do
-      Rails.cache.write('lorem', 'ip', tag: Page)
-      Rails.cache.read('lorem').should == 'ip'
+      subject.write('lorem', 'ip', tag: Page)
+      subject.read('lorem').should == 'ip'
 
       page.name = 'qwewq'
       page.save!
 
-      Rails.cache.read('lorem').should be_nil
+      subject.read('lorem').should be_nil
     end
 
     it "does not expire if other object touched" do
-      Rails.cache.write('lorem', 'ipsum', tag: page)
-      Rails.cache.read('lorem').should == 'ipsum'
+      subject.write('lorem', 'ipsum', tag: page)
+      subject.read('lorem').should == 'ipsum'
 
       other_page.name = 'qwewq'
       other_page.save!
 
-      Rails.cache.read('lorem').should == 'ipsum'
+      subject.read('lorem').should == 'ipsum'
     end
 
     it "does expire if this object is touched" do
-      Rails.cache.write('lorem', 'ipsum', tag: page)
-      Rails.cache.read('lorem').should == 'ipsum'
+      subject.write('lorem', 'ipsum', tag: page)
+      subject.read('lorem').should == 'ipsum'
 
       page.name = 'qwewq'
       page.save!
 
-      Rails.cache.read('lorem').should be_nil
+      subject.read('lorem').should be_nil
     end
   end
 
   describe "on delete" do
     it "expires if tagged as class" do
-      Rails.cache.write('lorem', 'ip', tag: Page)
-      Rails.cache.read('lorem').should == 'ip'
+      subject.write('lorem', 'ip', tag: Page)
+      subject.read('lorem').should == 'ip'
 
       page.destroy
 
-      Rails.cache.read('lorem').should be_nil
+      subject.read('lorem').should be_nil
     end
 
     it "does not expire if other object touched" do
-      Rails.cache.write('lorem', 'ipsum', tag: page)
-      Rails.cache.read('lorem').should == 'ipsum'
+      subject.write('lorem', 'ipsum', tag: page)
+      subject.read('lorem').should == 'ipsum'
 
       other_page.destroy
 
-      Rails.cache.read('lorem').should == 'ipsum'
+      subject.read('lorem').should == 'ipsum'
     end
 
     it "does expire if this object is touched" do
-      Rails.cache.write('lorem', 'ipsum', tag: page)
-      Rails.cache.read('lorem').should == 'ipsum'
+      subject.write('lorem', 'ipsum', tag: page)
+      subject.read('lorem').should == 'ipsum'
 
       page.destroy
 
-      Rails.cache.read('lorem').should be_nil
+      subject.read('lorem').should be_nil
     end
   end
 
