@@ -6,6 +6,9 @@ require 'cashier'
 require 'redis'
 require 'dalli'
 
+require 'pry'
+require 'pry-nav'
+
 Combustion.initialize! :all
 
 require 'rspec/rails'
@@ -22,3 +25,5 @@ RSpec.configure do |config|
     Rails.cache.clear
   end
 end
+
+ApplicationController.perform_caching = true
