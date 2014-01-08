@@ -5,6 +5,7 @@ require 'combustion'
 require 'cashier'
 require 'redis'
 require 'dalli'
+require 'database_cleaner'
 
 require 'pry'
 require 'pry-nav'
@@ -14,7 +15,20 @@ Combustion.initialize! :all
 require 'rspec/rails'
 
 RSpec.configure do |config|
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :deletion
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 
   config.before(:suite) do
     Cashier::Adapters::RedisStore.redis = Redis.new(:host => '127.0.0.1', :port => 6379)
@@ -27,3 +41,4 @@ RSpec.configure do |config|
 end
 
 ApplicationController.perform_caching = true
+Cashier.adapter = :redis_store
