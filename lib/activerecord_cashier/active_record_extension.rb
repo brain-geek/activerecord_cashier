@@ -24,17 +24,17 @@ module ActiverecordCashier
       after_commit do |model| 
         Cashier.expire(model, model.class)
       end
-
-      module ClassMethods
-        def expire_all_cache
-          search_string = ActiverecordCashier::PREFIX + self.to_s + ActiverecordCashier::DELIMITER
-
-          # using both 'original' functions for performance - morph-demorph with SQL queries will take lot of time
-          Cashier.original_expire(*Cashier.original_tags.find_all{|key| key.index(search_string) == 0 })
-
-          Cashier.expire self
-        end
-      end      
     end
+
+    module ClassMethods
+      def expire_all_cache
+        search_string = ActiverecordCashier::PREFIX + self.to_s + ActiverecordCashier::DELIMITER
+
+        # using both 'original' functions for performance - morph-demorph with SQL queries will take lot of time
+        Cashier.original_expire(*Cashier.original_tags.find_all{|key| key.index(search_string) == 0 })
+
+        Cashier.expire self
+      end
+    end      
   end
 end
