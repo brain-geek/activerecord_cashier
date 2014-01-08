@@ -17,3 +17,4 @@ test/version_tmp
 tmp
 
 /spec/upstream_spec
+/spec/internal/db/combustion_test.sqlite
