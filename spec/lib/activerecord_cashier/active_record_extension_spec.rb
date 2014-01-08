@@ -91,7 +91,6 @@ describe 'AR integration' do
   describe "#expire_all as class method" do
     it "deletes all tags for this class instances" do
       subject.write("foo", "bar", :tag => [page])
-
       subject.read('foo').should == 'bar'
 
       Page.expire_all_cache
