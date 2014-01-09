@@ -39,6 +39,8 @@ You can also trigger expiry on all article caches:
 
     Article.expire_all_cache
 
+You can see more examples in [spec](https://github.com/brain-geek/activerecord_cashier/blob/master/spec/lib/activerecord_cashier/active_record_extension_spec.rb).
+
 ## Contributing
 
 1. Fork it
