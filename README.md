@@ -1,6 +1,11 @@
 # ActiverecordCashier
 
-TODO: Write a gem description
+[![Build Status](https://secure.travis-ci.org/brain-geek/activerecord_cashier.png?branch=master)][travis]
+
+[gem]: https://rubygems.org/gems/activerecord_cashier
+[travis]: http://travis-ci.org/brain-geek/activerecord_cashier
+
+Automaticaly expires your cache entries triggered by ActiveRecord events.
 
 ## Installation
 
@@ -18,7 +23,24 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+After installation, you can specify strings, AR objects and classes as keys to trigger cache entry expiry.
+
+```ruby
+cache 'newstand', :tag => [Article]
+
+And then when you trigger save/create/destroy on any article, the cache expires.
+
+You can also specify records as tags:
+
+```ruby
+cache 'newstand', :tag => [@article]
+
+After any action on this article this cache entry then expire.
+
+You can also trigger expiry on all article caches:
+
+```ruby
+Article.expire_all_cache
 
 ## Contributing
 
