@@ -25,22 +25,19 @@ Or install it yourself as:
 
 After installation, you can specify strings, AR objects and classes as keys to trigger cache entry expiry.
 
-```ruby
-cache 'newstand', :tag => [Article]
+    cache 'newstand', :tag => [Article]
 
 And then when you trigger save/create/destroy on any article, the cache expires.
 
 You can also specify records as tags:
 
-```ruby
-cache 'newstand', :tag => [@article]
+    cache 'newstand', :tag => [@article]
 
 After any action on this article this cache entry then expire.
 
 You can also trigger expiry on all article caches:
 
-```ruby
-Article.expire_all_cache
+    Article.expire_all_cache
 
 ## Contributing
 
