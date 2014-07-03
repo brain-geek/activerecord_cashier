@@ -52,3 +52,15 @@ end
 
 ApplicationController.perform_caching = true
 Cashier.adapter = :redis_store
+
+class TrueClass
+  def true?
+    true
+  end
+end
+
+class FalseClass
+  def false?
+    true
+  end
+end
