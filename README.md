@@ -1,6 +1,7 @@
 # ActiverecordCashier
 
 [![Build Status](https://secure.travis-ci.org/brain-geek/activerecord_cashier.png?branch=master)][travis]
+[![Code Climate](https://codeclimate.com/github/brain-geek/activerecord_cashier.png)](https://codeclimate.com/github/brain-geek/activerecord_cashier)
 
 [gem]: https://rubygems.org/gems/activerecord_cashier
 [travis]: http://travis-ci.org/brain-geek/activerecord_cashier
