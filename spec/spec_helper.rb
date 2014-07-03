@@ -38,6 +38,16 @@ RSpec.configure do |config|
     Cashier::Adapters::RedisStore.redis.flushdb
     Rails.cache.clear
   end
+
+  config.expect_with :rspec do |c|
+    c.syntax = [:should, :expect]
+  end
+    
+  config.mock_with :rspec do |c|
+    c.syntax = [:should, :expect]
+  end
+
+  config.raise_errors_for_deprecations!  
 end
 
 ApplicationController.perform_caching = true

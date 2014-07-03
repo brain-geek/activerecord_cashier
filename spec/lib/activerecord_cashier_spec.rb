@@ -4,7 +4,7 @@ describe ActiverecordCashier do
   describe "#morph, #demorph" do
     it "should morph AR objects to strings" do
       source = [Page, Page.create!, 'page', 'page1', 'asdf']
-      subject.morph(source).any?{|a| a.is_a? String}.should be_true
+      subject.morph(source).any?{|a| a.is_a? String}.should be true
     end
 
     it "should be able to demorph objects correctly" do
