@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 # Specify your gem's dependencies in activerecord_cashier.gemspec
 gemspec
 
-
 rails_version = ENV["RAILS_VERSION"] || "default"
 
 rails = case rails_version
@@ -16,3 +15,5 @@ else
 end
 
 gem "rails", rails
+
+gem "codeclimate-test-reporter", group: :test, require: nil

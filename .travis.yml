@@ -17,3 +17,7 @@ env:
   - "RAILS_VERSION=3.2.0"
   - "RAILS_VERSION=4.0.0"
   - "RAILS_VERSION=4.1.0"
+
+addons:
+  code_climate:
+    repo_token: baaa5f8506dee50e295aa226002746b9c528b3ecfee2b654f0e4a1eb69a73a81
